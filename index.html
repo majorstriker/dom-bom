@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Расписание занятий</title>
+    <style>
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+        }
+        
+        .content-box {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid black;
+            width: 200px;
+            align-items: center;
+            padding-bottom: 10px;
+            background-color: lightblue;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="content"></div>
+
+    <script src="data.js"></script>
+    <script>
+        const dataApis = JSON.parse(newApi);
+
+        const mainDivEl = document.querySelector('.content');
+
+        dataApis.forEach(dataApi => {
+            const divEl = document.createElement('div');
+            divEl.classList.add('content-box');
+
+            const h2El = document.createElement('h2');
+            h2El.textContent = dataApi.Title;
+
+            const contentEl = document.createElement('p');
+            contentEl.textContent = dataApi.Time;
+
+            const maxEl = document.createElement('p');
+            maxEl.textContent = dataApi.Max;
+            // console.log(maxEl.textContent);
+
+            const currentEl = document.createElement('p');
+            currentEl.textContent = dataApi.Current;
+            // console.log(currentEl.textContent);
+
+            const buttonPlusEl = document.createElement('button');
+            buttonPlusEl.textContent = dataApi.Add;
+
+            const buttonMinusEl = document.createElement('button');
+            buttonMinusEl.textContent = dataApi.Remove;
+
+            divEl.appendChild(h2El);
+            divEl.appendChild(contentEl);
+            divEl.appendChild(maxEl);
+            divEl.appendChild(currentEl);
+            divEl.appendChild(buttonPlusEl);
+            divEl.appendChild(buttonMinusEl);
+
+            mainDivEl.appendChild(divEl);
+
+            buttonPlusEl.addEventListener('click', function(e) {
+                if (currentEl.textContent < maxEl.textContent) {
+                    currentEl.textContent = Number(currentEl.textContent) + 1;
+                }
+            });
+
+            buttonMinusEl.addEventListener('click', function(e) {
+                if (currentEl.textContent > 0) {
+                    currentEl.textContent = Number(currentEl.textContent) - 1;
+                } else {
+                    e.preventDefault;
+                }
+
+            });
+        });
+    </script>
+</body>
+
+</html>
