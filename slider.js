@@ -12,6 +12,10 @@ let rightArrow = document.createElement('i');
 rightArrow.classList.add('fas', 'fa-chevron-circle-right', 'slider-rightArrow');
 sliderEl.insertAdjacentElement("beforeend", rightArrow);
 
+let dot1El = document.querySelector('.dot1');
+let dot2El = document.querySelector('.dot2');
+let dot3El = document.querySelector('.dot3');
+
 window.addEventListener('load', function() {
     leftArrow.addEventListener('click', function() {
         images.setNextLeftImage();
@@ -20,10 +24,22 @@ window.addEventListener('load', function() {
     rightArrow.addEventListener('click', function() {
         images.setNextRightImage();
     });
+
+    dot1El.addEventListener('click', function() {
+        images.showDotImage1();
+    });
+
+    dot2El.addEventListener('click', function() {
+        images.showDotImage2();
+    });
+
+    dot3El.addEventListener('click', function() {
+        images.showDotImage3();
+    });
+
     loadIcon.style.display = 'none';
     images.init();
 });
-
 
 let images = {
     currentIdx: 0,
@@ -60,6 +76,24 @@ let images = {
         } else {
             this.currentIdx++;
         }
+        this.showImageWithCurrentIdx();
+    },
+
+    showDotImage1() {
+        this.hideVisibleImage();
+        this.currentIdx = 0;
+        this.showImageWithCurrentIdx();
+    },
+
+    showDotImage2() {
+        this.hideVisibleImage();
+        this.currentIdx = 1;
+        this.showImageWithCurrentIdx();
+    },
+
+    showDotImage3() {
+        this.hideVisibleImage();
+        this.currentIdx = 2;
         this.showImageWithCurrentIdx();
     },
 }

@@ -4,6 +4,7 @@
     overflow: hidden;
     width: 1024px;
     height: 768px;
+    margin-bottom: 10px;
 }
 
 .slider-item {
@@ -50,4 +51,23 @@
 
 .slider-rightArrow {
     right: 5%;
+}
+
+.slider-dots {
+    text-align: center;
+}
+
+.dot {
+    cursor: pointer;
+    height: 13px;
+    width: 13px;
+    margin: 0 5px;
+    background-color: black;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active dot:hover {
+    background-color: red;
 }
